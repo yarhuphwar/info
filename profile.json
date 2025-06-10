@@ -3,8 +3,8 @@
     {
       "username": "hlainghtetaung",
       "name": "Hlaing Htet Aung",
-      "pic": "images/hlainghtetaung.jpg",
-      "bio": "Web developer from Myanmar",
+      "pic": "https://example.com/path/to/image.jpg",
+      "bio": "Web developer from Myanmar with 5 years of experience in front-end technologies.",
       "facebook": "hlainghtetaung.dev",
       "telegram": "@hlainghtetaung",
       "viber": "+959123456789"
@@ -12,9 +12,9 @@
     {
       "username": "johndoe",
       "name": "John Doe",
-      "pic": "images/johndoe.jpg",
-      "bio": "Digital creator",
-      "facebook": "johndoe.artist",
+      "pic": "https://example.com/path/to/john.jpg",
+      "bio": "Digital creator and content writer specializing in tech tutorials.",
+      "facebook": "johndoe.creator",
       "telegram": "@johndoe",
       "viber": "+959987654321"
     }
