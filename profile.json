@@ -1,0 +1,22 @@
+{
+  "profiles": [
+    {
+      "username": "hlainghtetaung",
+      "name": "Hlaing Htet Aung",
+      "pic": "images/hlainghtetaung.jpg",
+      "bio": "Web developer from Myanmar",
+      "facebook": "hlainghtetaung.dev",
+      "telegram": "@hlainghtetaung",
+      "viber": "+959123456789"
+    },
+    {
+      "username": "johndoe",
+      "name": "John Doe",
+      "pic": "images/johndoe.jpg",
+      "bio": "Digital creator",
+      "facebook": "johndoe.artist",
+      "telegram": "@johndoe",
+      "viber": "+959987654321"
+    }
+  ]
+}
