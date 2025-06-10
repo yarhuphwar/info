@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const username = pathSegments[pathSegments.length - 1] || pathSegments[pathSegments.length - 2];
     
     // Fetch profile data
-    fetch('refs/heads/main/profile.json')
+    fetch('main/profile.json')
         .then(response => response.json())
         .then(data => {
             const profile = data.profiles.find(p => p.username === username);
