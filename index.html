@@ -4,13 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bio Profile</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .profile-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #f0f0f0;
+            margin-bottom: 20px;
+        }
+
+        #profile-name {
+            color: #2c3e50;
+            margin: 10px 0;
+            font-size: 24px;
+        }
+
+        #profile-bio {
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .error-container {
+            text-align: center;
+            padding: 30px;
+        }
+
+        @media (max-width: 600px) {
+            .profile-container {
+                padding: 20px;
+                width: 85%;
+            }
+            
+            .profile-pic {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="profile-container">
         <img id="profile-pic" src="" alt="Profile Picture" class="profile-pic">
         <h1 id="profile-name"></h1>
-        <p id="profile-bio" class="bio"></p>
+        <p id="profile-bio"></p>
         
         <div class="social-links">
             <a id="facebook-link" href="#" target="_blank">
@@ -25,6 +102,88 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // JSON Data Embedded in the HTML
+        const profileData = {
+            "profiles": [
+                {
+                    "username": "hlainghtetaung",
+                    "name": "Hlaing Htet Aung",
+                    "pic": "https://via.placeholder.com/150",
+                    "bio": "Web developer from Myanmar with 5 years of experience in front-end technologies.",
+                    "facebook": "hlainghtetaung.dev",
+                    "telegram": "@hlainghtetaung",
+                    "viber": "+959123456789"
+                },
+                {
+                    "username": "yhp",
+                    "name": "Yarhu Phwar",
+                    "pic": "https://via.placeholder.com/150?text=John",
+                    "bio": "Digital creator and content writer specializing in tech tutorials.",
+                    "facebook": "johndoe.creator",
+                    "telegram": "@johndoe",
+                    "viber": "+959987654321"
+                }
+            ]
+        };
+
+        // Main JavaScript Code
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get username from URL
+            const pathSegments = window.location.pathname.split('/');
+            let username = pathSegments.pop() || pathSegments.pop();
+            
+            // If no username specified, use the first profile
+            if (!username || username === 'index.html' || username === '') {
+                username = '';
+            }
+
+            try {
+                let profile;
+                
+                if (username) {
+                    // Find profile by username
+                    profile = profileData.profiles.find(p => p.username === username);
+                    if (!profile) {
+                        throw new Error('Profile not found');
+                    }
+                } else {
+                    // Use first profile if no username specified
+                    profile = profileData.profiles[0];
+                }
+
+                // Populate profile data
+                document.getElementById('profile-pic').src = profile.pic;
+                document.getElementById('profile-name').textContent = profile.name;
+                document.getElementById('profile-bio').textContent = profile.bio;
+                
+                // Set social links
+                const facebookLink = document.getElementById('facebook-link');
+                const telegramLink = document.getElementById('telegram-link');
+                const viberLink = document.getElementById('viber-link');
+                
+                facebookLink.href = profile.facebook ? `https://facebook.com/${profile.facebook}` : '#';
+                telegramLink.href = profile.telegram ? `https://t.me/${profile.telegram.replace('@', '')}` : '#';
+                viberLink.href = profile.viber ? `viber://add?number=${profile.viber}` : '#';
+                
+                // Hide social links if no data
+                if (!profile.facebook) facebookLink.style.display = 'none';
+                if (!profile.telegram) telegramLink.style.display = 'none';
+                if (!profile.viber) viberLink.style.display = 'none';
+
+                // Update page title
+                document.title = `${profile.name} | Bio Profile`;
+            } catch (error) {
+                console.error('Error:', error);
+                document.body.innerHTML = `
+                    <div class="error-container">
+                        <h1>Profile Not Found</h1>
+                        <p>The requested profile does not exist.</p>
+                        <a href="/">Return to Home</a>
+                    </div>
+                `;
+            }
+        });
+    </script>
 </body>
 </html>
