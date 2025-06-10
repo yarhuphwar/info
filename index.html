@@ -3,68 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fullscreen Image</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden; /* Prevent scrollbars */
-        }
-
-        #fullscreen-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* or contain, depending on your needs */
-            display: block; /* Prevents a small gap below the image */
-        }
-    </style>
+    <title>Bio Profile</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="profile-container">
+        <img id="profile-pic" src="" alt="Profile Picture" class="profile-pic">
+        <h1 id="profile-name"></h1>
+        <p id="profile-bio" class="bio"></p>
+        
+        <div class="social-links">
+            <a id="facebook-link" href="#" target="_blank">Facebook</a>
+            <a id="telegram-link" href="#" target="_blank">Telegram</a>
+            <a id="viber-link" href="#" target="_blank">Viber</a>
+        </div>
+    </div>
 
-    <img id="fullscreen-image" src="info/Golden Egg 17a_7de4b707-a65d-4f69-9625-fc944858491e.png" alt="Fullscreen Image">
-
-    <script>
-        // Optional: JavaScript to handle potential issues or enhancements
-
-        const fullscreenImage = document.getElementById('fullscreen-image');
-
-         // Check if the browser supports fullscreen API
-        if (fullscreenImage.requestFullscreen) {
-          fullscreenImage.addEventListener('click', () => {
-             fullscreenImage.requestFullscreen();
-          });
-        } else if (fullscreenImage.mozRequestFullScreen) { /* Firefox */
-          fullscreenImage.addEventListener('click', () => {
-             fullscreenImage.mozRequestFullScreen();
-          });
-        } else if (fullscreenImage.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-          fullscreenImage.addEventListener('click', () => {
-             fullscreenImage.webkitRequestFullscreen();
-          });
-        } else if (fullscreenImage.msRequestFullscreen) { /* IE/Edge */
-          fullscreenImage.addEventListener('click', () => {
-             fullscreenImage.msRequestFullscreen();
-          });
-        }
-        else {
-            console.log("Fullscreen API is not supported in this browser.");
-        }
-
-
-        // Optional:  You could add code here to handle exiting fullscreen,
-        // or to perform other actions when the image is clicked.  For example,
-        // to toggle fullscreen:
-
-        // document.addEventListener('fullscreenchange', () => {
-        //     if (document.fullscreenElement) {
-        //         console.log('Entered fullscreen');
-        //     } else {
-        //         console.log('Exited fullscreen');
-        //     }
-        // });
-
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
